@@ -1,0 +1,116 @@
+cmake_minimum_required(VERSION 3.25)
+
+project(KBDTool LANGUAGES C)
+
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+set(KBDT_MSG_PREFIX "[KBDTool]")
+
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
+    message(FATAL_ERROR "${KBDT_MSG_PREFIX} In-source builds are not allowed. Please make a new directory (e.g. build) and run CMake from there.")
+endif()
+
+if(NOT DEFINED KBDT_MASTER_PROJECT)
+    if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+        set(KBDT_MASTER_PROJECT ON)
+    else()
+        set(KBDT_MASTER_PROJECT OFF)
+    endif()
+endif()
+
+option(KBDT_BUILD_SHARED "Build shared library" OFF)
+if(KBDT_BUILD_SHARED)
+    message(STATUS "${KBDT_MSG_PREFIX} Shared library will be builded.")
+else()
+    message(STATUS "${KBDT_MSG_PREFIX} Static library will be builded.")
+endif()
+
+option(KBDT_BUILD_WITH_UTILITY "Build with utility" ON)
+option(KBDT_BUILD_EXAMPLE "Build example" ${KBDT_MASTER_PROJECT})
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+if(WIN32)
+    file(GLOB_RECURSE SRC ${SRC} src/win/*.c)
+elseif(APPLE)
+    file(GLOB_RECURSE SRC ${SRC} src/mac/*.c)
+elseif(LINUX)
+    file(GLOB_RECURSE SRC ${SRC} src/linux/*.c)
+endif()
+
+file(GLOB SRC ${SRC} src/*.c)
+if(KBDT_BUILD_WITH_UTILITY)
+    file(GLOB SRC ${SRC} src/utility/utility.c)
+    if(WIN32)
+        file(GLOB SRC ${SRC} src/utility/utility_win.c)
+    elseif(APPLE)
+        file(GLOB SRC ${SRC} src/utility/utility_mac.c)
+    elseif(LINUX)
+        file(GLOB SRC ${SRC} src/utility/utility_linux.c)
+    endif()
+endif()
+
+set(TARGET_NAME kbdt)
+
+if(KBDT_BUILD_SHARED)
+    add_library(${TARGET_NAME} SHARED ${SRC})
+    target_compile_definitions(${TARGET_NAME} PUBLIC KBDT_BUILD_SHARED)
+else()
+    add_library(${TARGET_NAME} STATIC ${SRC})
+endif()
+
+if(WIN32)
+    message(STATUS "${KBDT_MSG_PREFIX} Windows platform detected.")
+    set(CMAKE_STATIC_LIBRARY_SUFFIX ".lib")
+endif()
+
+if(APPLE)
+    message(STATUS "${KBDT_MSG_PREFIX} Apple platform detected.")
+
+    find_library(COREFOUNDATION_LIBRARY CoreFoundation)
+    if(COREFOUNDATION_LIBRARY)
+        message(STATUS "${KBDT_MSG_PREFIX} Found CoreFoundation: ${COREFOUNDATION_LIBRARY}.")
+        target_link_libraries(${TARGET_NAME} PRIVATE ${COREFOUNDATION_LIBRARY})
+    else()
+        message(FATAL_ERROR "${KBDT_MSG_PREFIX} Not found CoreFoundation.")
+    endif()
+
+    find_library(CARBON_LIBRARY Carbon)
+    if(CARBON_LIBRARY)
+        message(STATUS "{KBDT_MSG_PREFIX} Found Carbon: ${CARBON_LIBRARY}.")
+        target_link_libraries(${TARGET_NAME} PRIVATE ${CARBON_LIBRARY})
+    else()
+        message(FATAL_ERROR "{KBDT_MSG_PREFIX} Not found Carbon.")
+    endif()
+
+    find_library(COREGRAPHICS_LIBRARY CoreGraphics)
+    if(COREGRAPHICS_LIBRARY)
+        message(STATUS "${KBDT_MSG_PREFIX} Found CoreGraphics: ${COREGRAPHICS_LIBRARY}.")
+        target_link_libraries(${TARGET_NAME} PRIVATE ${COREGRAPHICS_LIBRARY})
+    else()
+        message(FATAL_ERROR "${KBDT_MSG_PREFIX} Not found CoreGraphics.")
+    endif()
+endif()
+
+if(LINUX)
+    message(STATUS "${KBDT_MSG_PREFIX} Linux platform detected.")
+endif()
+
+set_target_properties(${TARGET_NAME} PROPERTIES DEBUG_POSTFIX d)
+
+if(MSVC)
+    add_subdirectory(msvc_pthread)
+    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/msvc_pthread)
+    target_link_libraries(${TARGET_NAME} PUBLIC pthread::pthread)
+else()
+    find_package(Threads REQUIRED)
+    target_link_libraries(${TARGET_NAME} PUBLIC Threads::Threads)
+endif()
+
+add_library(kbdt::kbdt ALIAS ${TARGET_NAME})
+
+if(KBDT_BUILD_EXAMPLE)
+    add_subdirectory(example)
+endif()
