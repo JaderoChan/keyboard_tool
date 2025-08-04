@@ -30,7 +30,7 @@ endif()
 option(KBDT_BUILD_WITH_UTILITY "Build with utility" ON)
 option(KBDT_BUILD_EXAMPLE "Build example" ${KBDT_MASTER_PROJECT})
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+include_directories(include)
 
 if(WIN32)
     file(GLOB_RECURSE SRC ${SRC} src/win/*.c)
@@ -50,6 +50,11 @@ if(KBDT_BUILD_WITH_UTILITY)
     elseif(LINUX)
         file(GLOB SRC ${SRC} src/utility/utility_linux.c)
     endif()
+endif()
+
+if(MSVC)
+    include_directories(msvc_pthread)
+    file(GLOB SRC ${SRC} msvc_pthread/pthread.c)
 endif()
 
 if(KBDT_BUILD_SHARED)
@@ -98,14 +103,8 @@ endif()
 
 set_target_properties(kbdt PROPERTIES DEBUG_POSTFIX d)
 
-if(MSVC)
-    add_subdirectory(msvc_pthread)
-    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/msvc_pthread)
-    target_link_libraries(kbdt PUBLIC pthread::pthread)
-else()
-    find_package(Threads REQUIRED)
-    target_link_libraries(kbdt PUBLIC Threads::Threads)
-endif()
+find_package(Threads REQUIRED)
+target_link_libraries(kbdt PUBLIC Threads::Threads)
 
 add_library(kbdt::kbdt ALIAS kbdt)
 
