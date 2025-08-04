@@ -22,9 +22,9 @@ endif()
 
 option(KBDT_BUILD_SHARED "Build shared library" OFF)
 if(KBDT_BUILD_SHARED)
-    message(STATUS "${KBDT_MSG_PREFIX} Shared library will be builded.")
+    message(STATUS "${KBDT_MSG_PREFIX} Shared library will be built.")
 else()
-    message(STATUS "${KBDT_MSG_PREFIX} Static library will be builded.")
+    message(STATUS "${KBDT_MSG_PREFIX} Static library will be built.")
 endif()
 
 option(KBDT_BUILD_WITH_UTILITY "Build with utility" ON)
