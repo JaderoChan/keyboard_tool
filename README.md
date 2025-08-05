@@ -33,4 +33,4 @@ A cross-platform keyboard event listening and sending library written in C. Orig
 
 - Generally, administrator privileges are required for proper execution.
 - Do not call the `end` function within the thread where the `event_handler` is running.
-- For the MSVC compiler, `pthread for windows` needs to be configured, see also [pthreads-win32](https://sourceware.org/pthreads-win32/).
+- For the MSVC compiler, `pthread for Windows` needs to be configured, see also [pthreads-win32](https://sourceware.org/pthreads-win32/).
