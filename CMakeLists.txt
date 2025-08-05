@@ -52,11 +52,6 @@ if(KBDT_BUILD_WITH_UTILITY)
     endif()
 endif()
 
-if(MSVC)
-    include_directories(msvc_pthread)
-    file(GLOB SRC ${SRC} msvc_pthread/pthread.c)
-endif()
-
 if(KBDT_BUILD_SHARED)
     add_library(kbdt SHARED ${SRC})
     target_compile_definitions(kbdt PUBLIC KBDT_BUILD_SHARED)

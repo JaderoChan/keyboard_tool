@@ -11,7 +11,7 @@
 
 #include "event_converter.h"
 
-static pthread_mutex_t g_mtx;
+static pthread_mutex_t g_mtx = PTHREAD_MUTEX_INITIALIZER;
 #define LOCK(mtx)   pthread_mutex_lock(mtx)
 #define UNLOCK(mtx) pthread_mutex_unlock(mtx)
 
@@ -19,15 +19,11 @@ static keyboard_event_handler g_handler = NULL;
 
 static CFRunLoopRef g_run_loop;
 
-static void init();
-static void clear();
-
 static CGEventRef
 keyboard_tap_callback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void* data);
 
 int do_before_start_work()
 {
-    init();
     return KBDT_RC_SUCCESS;
 }
 
@@ -80,7 +76,6 @@ void work()
 
     CFRelease(event_tap);
     CFRelease(run_loop_source);
-    clear();
 }
 
 int set_event_handler_p(keyboard_event_handler handler)
@@ -107,16 +102,6 @@ size_t send_events_p(struct keyboard_event* events, size_t event_count)
         }
     }
     return sent;
-}
-
-void init()
-{
-    pthread_mutex_init(&g_mtx, NULL);
-}
-
-void clear()
-{
-    pthread_mutex_destroy(&g_mtx);
 }
 
 CGEventRef keyboard_tap_callback(CGEventTapProxy proxy, CGEventType type, CGEventRef event, void* data)

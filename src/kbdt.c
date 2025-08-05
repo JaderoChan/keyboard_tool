@@ -3,12 +3,12 @@
 #include <memory.h>     // memcpy
 #include <stdlib.h>     // malloc, free
 
-#include <pthread.h>    // pthread
+#include <pthread.h>
 
 #include "kbdt_private.h"
 
 static pthread_t g_worker_thread;
-static pthread_mutex_t g_mtx;
+static pthread_mutex_t g_mtx = PTHREAD_MUTEX_INITIALIZER;
 #define LOCK(mtx)   pthread_mutex_lock(mtx)
 #define UNLOCK(mtx) pthread_mutex_unlock(mtx)
 
@@ -18,7 +18,7 @@ enum running_state
     RS_RUNNING,
     RS_TERMINATE
 };
-static pthread_cond_t g_cv_running_state;
+static pthread_cond_t g_cv_running_state = PTHREAD_COND_INITIALIZER;
 static enum running_state g_running_state = RS_FREE;
 static int g_running_rc = -1;
 
@@ -34,21 +34,9 @@ static void* thread_work(void* arg)
     // else if the work is exit in error (the running state is `RS_TERMINATE`) keep the running state.
     if (g_running_state == RS_RUNNING)
         g_running_state = RS_FREE;
-    UNLOCK(&g_mtx);
     pthread_cond_signal(&g_cv_running_state);
+    UNLOCK(&g_mtx);
     return NULL;
-}
-
-static void init()
-{
-    pthread_mutex_init(&g_mtx, NULL);
-    pthread_cond_init(&g_cv_running_state, NULL);
-}
-
-static void clear()
-{
-    pthread_mutex_destroy(&g_mtx);
-    pthread_cond_destroy(&g_cv_running_state);
 }
 
 KBDT_API int kbdt_run()
@@ -57,7 +45,6 @@ KBDT_API int kbdt_run()
     if (rc != KBDT_RC_SUCCESS)
         return rc;
 
-    init();
     pthread_create(&g_worker_thread, NULL, &thread_work, NULL);
     pthread_detach(g_worker_thread);
 
@@ -65,16 +52,14 @@ KBDT_API int kbdt_run()
     // Wait the work set the running state.
     while (g_running_state == RS_FREE)
         pthread_cond_wait(&g_cv_running_state, &g_mtx);
-    UNLOCK(&g_mtx);
 
     // If the work occur error set the running state to `RS_FREE` and clear related resource.
     if (g_running_state == RS_TERMINATE)
-    {
-        clear();
         g_running_state = RS_FREE;
-    }
+    rc = g_running_rc;
+    UNLOCK(&g_mtx);
 
-    return g_running_rc;
+    return rc;
 }
 
 KBDT_API int kbdt_end()
@@ -89,7 +74,6 @@ KBDT_API int kbdt_end()
         pthread_cond_wait(&g_cv_running_state, &g_mtx);
     UNLOCK(&g_mtx);
 
-    clear();
     return KBDT_RC_SUCCESS;
 }
 
@@ -163,8 +147,8 @@ void set_run_success()
     LOCK(&g_mtx);
     g_running_rc = KBDT_RC_SUCCESS;
     g_running_state = RS_RUNNING;
-    UNLOCK(&g_mtx);
     pthread_cond_signal(&g_cv_running_state);
+    UNLOCK(&g_mtx);
 }
 
 void set_run_fail(int error_code)

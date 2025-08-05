@@ -15,7 +15,7 @@ A cross-platform keyboard event listening and sending library written in C. Orig
 2. Use `CMake`, for example:
 
    ```sh
-   cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -G "Visual Studio 17 2022"
+   cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles"
    ```
 
 ## Build Options
@@ -29,11 +29,8 @@ A cross-platform keyboard event listening and sending library written in C. Orig
 - `KBDT_BUILD_EXAMPLE`
   Whether to build example programs.
 
-## Dependencies
-
-When using the MSVC compiler, it depends on the [pthread for Windows](https://github.com/midnite8177/pthread) library.
-
 ## Notes
 
 - Generally, administrator privileges are required for proper execution.
 - Do not call the `end` function within the thread where the `event_handler` is running.
+- For the MSVC compiler, `pthread for windows` needs to be configured, see also [pthreads-win32](https://sourceware.org/pthreads-win32/).

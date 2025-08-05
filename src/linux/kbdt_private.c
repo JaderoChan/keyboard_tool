@@ -20,7 +20,7 @@
 #include "event_converter.h"
 #include "utility.h"
 
-static pthread_mutex_t g_mtx;
+static pthread_mutex_t g_mtx = PTHREAD_MUTEX_INITIALIZER;
 #define LOCK(mtx)   pthread_mutex_lock(mtx)
 #define UNLOCK(mtx) pthread_mutex_unlock(mtx)
 
@@ -326,7 +326,6 @@ int init()
         return rc;
     }
 
-    pthread_mutex_init(&g_mtx, NULL);
     return KBDT_RC_SUCCESS;
 }
 
@@ -339,8 +338,6 @@ void clear()
 
     destroy_container(&g_pollfds);
     destroy_container(&g_evdev_names);
-
-    pthread_mutex_destroy(&g_mtx);
 }
 
 void handle_devices_changed()

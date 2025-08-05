@@ -15,7 +15,7 @@ C语言多平台的键盘事件监听和发送库，起初来自[GlobalHotkey](h
 2. 使用`CMake`，例如：
 
   ```sh
-  cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -G "Visual Studio 17 2022"
+  cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles"
   ```
 
 ## 编译选项
@@ -32,11 +32,8 @@ C语言多平台的键盘事件监听和发送库，起初来自[GlobalHotkey](h
 
   是否生成示例程序。
 
-## 依赖
-
-对于使用MSVC编译器的情况下依赖[pthread for windows](https://github.com/midnite8177/pthread)`库。
-
 ## 注意点
 
 - 通常来讲，需要管理员权限才可以正常运行。
 - 不要在`event_handler`所属线程中执行`end`函数。
+- 对于MSVC编译器需要配置`pthread for windows`，参见[pthreads-win32](https://sourceware.org/pthreads-win32/)。

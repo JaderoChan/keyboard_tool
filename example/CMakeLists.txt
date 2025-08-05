@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
 
 project(KBDTool-Example LANGUAGES C)
-message(STATUS "${KBDT_MSG_PREFIX} Example will be built.")
+message(STATUS "${KBDT_MSG_PREFIX} Example will be builded.")
 
 if(NOT TARGET kbdt)
     find_package(kbdt REQUIRED)

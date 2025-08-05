@@ -77,6 +77,8 @@ int set_event_handler_p(keyboard_event_handler handler)
 size_t send_events_p(struct keyboard_event* events, size_t event_count)
 {
     INPUT* inputs = malloc(event_count * sizeof(INPUT));
+    if (!inputs)
+        return 0;
     for (size_t i = 0; i < event_count; ++i)
         keyboard_event_to_input(&events[i], &inputs[i]);
     UINT sent = SendInput(event_count, inputs, sizeof(INPUT));

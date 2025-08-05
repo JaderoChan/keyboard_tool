@@ -7,8 +7,8 @@
 #include <kbdt/utility.h>
 
 static bool g_should_close = false;
-static pthread_mutex_t g_mtx;
-static pthread_cond_t g_cv_should_close;
+static pthread_mutex_t g_mtx = PTHREAD_MUTEX_INITIALIZER;
+static pthread_cond_t g_cv_should_close = PTHREAD_COND_INITIALIZER;
 
 static void event_handler(struct keyboard_event* event)
 {
@@ -21,8 +21,8 @@ static void event_handler(struct keyboard_event* event)
             {
                 pthread_mutex_lock(&g_mtx);
                 g_should_close = true;
-                pthread_mutex_unlock(&g_mtx);
                 pthread_cond_signal(&g_cv_should_close);
+                pthread_mutex_unlock(&g_mtx);
             }
             break;
         case KBDET_RELEASED:
@@ -35,9 +35,6 @@ static void event_handler(struct keyboard_event* event)
 
 int main()
 {
-    pthread_mutex_init(&g_mtx, NULL);
-    pthread_cond_init(&g_cv_should_close, NULL);
-
     int rc = kbdt_run();
     if (rc != KBDT_RC_SUCCESS)
     {
@@ -58,6 +55,8 @@ int main()
     while (!g_should_close)
         pthread_cond_wait(&g_cv_should_close, &g_mtx);
     pthread_mutex_unlock(&g_mtx);
+
+    kbdt_end();
 
     printf("Success to exit\n");
     return 0;
