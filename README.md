@@ -1,6 +1,6 @@
 # KBD Tool
 
-[ English | [简体中文](./doc/README_CN.md) ]
+[ English | [简体中文](doc/README_ZH.md) ]
 
 A cross-platform keyboard event listening and sending library written in C. Originally derived from the `KeyboardHook` module in the [GlobalHotkey](https://github.com/JaderoChan/GlobalHotkey) library.
 
