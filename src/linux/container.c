@@ -22,7 +22,10 @@ static void dealloc_container(struct container* cont)
 static void realloc_container(struct container* cont, size_t size)
 {
     if (size == 0)
+    {
         dealloc_container(cont);
+        return;
+    }
 
     void* data = malloc(cont->step * size);
     size_t min_size = size < cont->size ? size : cont->size;
@@ -76,7 +79,7 @@ void remove_item_in_container(struct container* cont, size_t index)
         memcpy(
             (char*) cont->data + index * cont->step,
             (char*) cont->data + (index + 1) * cont->step,
-            (cont->size - 1) * cont->step
+            (cont->size - index - 1) * cont->step
         );
     cont->size--;
 }

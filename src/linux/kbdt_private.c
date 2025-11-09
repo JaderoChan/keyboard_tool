@@ -80,7 +80,7 @@ void work()
             continue;
 
         // My event was detected.
-        struct pollfd* pollfd = &((struct pollfd*) g_pollfds.data)[0];
+        struct pollfd* pollfd = (struct pollfd*) get_item_in_container(&g_pollfds, 0);
         if (pollfd->revents & POLLIN)
         {
             int64_t et;
@@ -104,14 +104,14 @@ void work()
         }
 
         // The input devices has changed.
-        pollfd = &((struct pollfd*) g_pollfds.data)[1];
+        pollfd = (struct pollfd*) get_item_in_container(&g_pollfds, 1);
         if (pollfd->revents & POLLIN)
             handle_devices_changed();
 
         // Is input devices has event?
         for (size_t i = g_pollfds.size - g_evdev_names.size; i < g_pollfds.size; ++i)
         {
-            pollfd = &((struct pollfd*) g_pollfds.data)[i];
+            pollfd = (struct pollfd*) get_item_in_container(&g_pollfds, i);
             if (pollfd->revents & POLLIN)
                 handle_input_event(i - (g_pollfds.size - g_evdev_names.size));
         }
@@ -190,20 +190,20 @@ void try_add_evdev_fd(const char* evdev_name)
     pollfd.revents = 0;
     add_item_to_container(&g_pollfds, &pollfd);
     char* name = copy_str_to_new(evdev_name);
-    add_item_to_container(&g_evdev_names, name);
+    add_item_to_container(&g_evdev_names, &name);
 }
 
 void remove_evdev_fd(const char* evdev_name)
 {
     for (size_t i = 0; i < g_evdev_names.size; ++i)
     {
-        char* name = &((char*) g_evdev_names.data)[i];
+        char* name = *(char**) get_item_in_container(&g_evdev_names, i);
         if (strcmp(name, evdev_name) == 0)
         {
-            size_t pollfds_i = g_pollfds.size - g_evdev_names.size + i;
-            struct pollfd* pollfd = &((struct pollfd*) g_pollfds.data)[pollfds_i];
+            size_t pollfd_i = g_pollfds.size - g_evdev_names.size + i;
+            struct pollfd* pollfd = (struct pollfd*) get_item_in_container(&g_pollfds, pollfd_i);
             close(pollfd->fd);
-            remove_item_in_container(&g_pollfds, pollfds_i);
+            remove_item_in_container(&g_pollfds, pollfd_i);
             free(name);
             remove_item_in_container(&g_evdev_names, i);
             return;
@@ -285,10 +285,10 @@ void unsetup_evdev_fds()
 {
     for (size_t i = 0; i < g_evdev_names.size; ++i)
     {
-        size_t pollfds_i = g_pollfds.size - g_evdev_names.size + i;
-        struct pollfd* pollfd = &((struct pollfd*) g_pollfds.data)[pollfds_i];
+        size_t pollfd_i = g_pollfds.size - g_evdev_names.size + i;
+        struct pollfd* pollfd = (struct pollfd*) get_item_in_container(&g_pollfds, pollfd_i);
         close(pollfd->fd);
-        char* name = &((char*) g_evdev_names.data)[i];
+        char* name = *(char**) get_item_in_container(&g_evdev_names, i);
         free(name);
     }
 }
@@ -361,7 +361,8 @@ void handle_devices_changed()
 
 void handle_input_event(int evdev_index)
 {
-    struct pollfd* pollfd = &((struct pollfd*) g_pollfds.data)[evdev_index + g_pollfds.size - g_evdev_names.size];
+    size_t pollfd_i = evdev_index + g_pollfds.size - g_evdev_names.size;
+    struct pollfd* pollfd = (struct pollfd*) get_item_in_container(&g_pollfds, pollfd_i);
     int evdev_fd = pollfd->fd;
     char* buf = global_buffer();
     ssize_t rdsize = read(evdev_fd, buf, BUFFER_SIZE);
