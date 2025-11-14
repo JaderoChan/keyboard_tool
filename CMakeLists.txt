@@ -30,8 +30,6 @@ endif()
 option(KBDT_BUILD_WITH_UTILITY "Build with utility" ON)
 option(KBDT_BUILD_EXAMPLE "Build example" ${KBDT_MASTER_PROJECT})
 
-include_directories(include)
-
 if(WIN32)
     file(GLOB_RECURSE SRC ${SRC} src/win/*.c)
 elseif(APPLE)
@@ -58,6 +56,11 @@ if(KBDT_BUILD_SHARED)
 else()
     add_library(${PROJECT_NAME} STATIC ${SRC})
 endif()
+
+target_include_directories(${PROJECT_NAME} PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:${PROJECT_NAME}/include>
+)
 
 if(WIN32)
     message(STATUS "${KBDT_MSG_PREFIX} Windows platform detected.")
@@ -102,6 +105,39 @@ find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME} PUBLIC Threads::Threads)
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+
+install(
+    TARGETS ${PROJECT_NAME}
+    EXPORT ${PROJECT_NAME}
+    ARCHIVE DESTINATION ${PROJECT_NAME}/lib
+    LIBRARY DESTINATION ${PROJECT_NAME}/bin
+    RUNTIME DESTINATION ${PROJECT_NAME}/bin
+)
+
+install(DIRECTORY include/ DESTINATION ${PROJECT_NAME}/include)
+
+install(
+    EXPORT ${PROJECT_NAME}
+    FILE ${PROJECT_NAME}Targets.cmake
+    NAMESPACE ${PROJECT_NAME}::
+    DESTINATION ${PROJECT_NAME}/lib/cmake
+)
+
+set(INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}/include)
+set(LIB_DIR ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}/lib)
+
+include(CMakePackageConfigHelpers)
+configure_package_config_file(
+    ${PROJECT_NAME}Config.cmake.in
+    ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+    PATH_VARS INCLUDE_DIRS LIB_DIR
+    INSTALL_DESTINATION ${PROJECT_NAME}/lib/cmake
+)
+
+install(
+    FILES ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+    DESTINATION ${PROJECT_NAME}/lib/cmake
+)
 
 if(KBDT_BUILD_EXAMPLE)
     add_subdirectory(example)
