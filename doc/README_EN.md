@@ -11,7 +11,7 @@ A cross-platform keyboard event listening and sending library written in C. Orig
 
 ## How to Build?
 
-1. Run the corresponding script in the `script` directory to generate the library and example programs.
+1. Run the `install` script in the root directory to install the library and example programs to `./install` directory.
 2. Use `CMake`, for example:
 
    ```sh
