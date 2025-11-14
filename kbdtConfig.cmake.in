@@ -2,6 +2,9 @@
 
 include(CMakeFindDependencyMacro)
 find_dependency(Threads REQUIRED)
+if(APPLE)
+    find_dependency(Carbon CoreFoundation CoreGraphics REQUIRED)
+endif()
 
 include(@PACKAGE_LIB_DIR@/cmake/@PROJECT_NAME@Targets.cmake)
 
