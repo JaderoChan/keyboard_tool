@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 
-project(kbdt_examples LANGUAGES C)
+project(kbdt_example LANGUAGES C)
 message(STATUS "${KBDT_MSG_PREFIX} Example will be builded.")
 
 option(KBDT_EXAMPLE_BUILD_ECHO "Build echo example" ON)
