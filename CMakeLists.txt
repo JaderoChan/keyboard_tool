@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 
-project(kbdt LANGUAGES C)
+project(kbdt VERSION 0.1.1 LANGUAGES C)
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
@@ -129,6 +129,12 @@ set(INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}/include)
 set(LIB_DIR ${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}/lib)
 
 include(CMakePackageConfigHelpers)
+write_basic_package_version_file(
+    ${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY SameMajorVersion
+)
+
 configure_package_config_file(
     ${PROJECT_NAME}Config.cmake.in
     ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
@@ -137,7 +143,9 @@ configure_package_config_file(
 )
 
 install(
-    FILES ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+    FILES
+    ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+    ${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
     DESTINATION ${PROJECT_NAME}/lib/cmake
 )
 
