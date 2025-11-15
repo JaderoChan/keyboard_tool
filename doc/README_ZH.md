@@ -2,7 +2,7 @@
 
 [ [English](README_EN.md) | 简体中文 ]
 
-C语言多平台的键盘事件监听和发送库，起初来自[GlobalHotkey](https://github.com/JaderoChan/GlobalHotkey)库中的`KeyboardHook`模块。
+C语言多平台的键盘事件监听和发送库，起初来自[Global Hotkey](https://github.com/JaderoChan/global_hotkey)库中的`KeyboardHook`模块。
 
 ## 特性
 
