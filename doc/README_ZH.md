@@ -14,23 +14,23 @@ C语言多平台的键盘事件监听和发送库，起初来自[GlobalHotkey](h
 1. 运行根目录下对应的`install`脚本，生成库和示例程序至`./install`目录下。
 2. 使用`CMake`，例如：
 
-  ```sh
-  cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles"
-  ```
+    ```sh
+    cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles"
+    ```
 
 ## 编译选项
 
 - `KBDT_BUILD_SHARED`
 
-  是否生成动态库，默认为`OFF`。
+    是否生成动态库，默认为`OFF`。
 
 - `KBDT_BUILD_WITH_UTILITY`
 
-  是否编译`Utility`模块，其包含`keyboard_key`与`native key code`的映射函数，以及`keyboard_key`与字符串的互转函数。如果你已有**keycode**映射程序，则可以将此选项置`OFF`，默认为`ON`。
+    是否编译`Utility`模块，其包含`keyboard_key`与`native key code`的映射函数，以及`keyboard_key`与字符串的互转函数。如果你已有**keycode**映射程序，则可以将此选项置`OFF`，默认为`ON`。
 
 - `KBDT_BUILD_EXAMPLE`
 
-  是否生成示例程序。
+    是否生成示例程序。
 
 ## 注意点
 
