@@ -1,4 +1,4 @@
-# KBD Tool
+# Keyboard Tool
 
 [ [English](README_EN.md) | 简体中文 ]
 
