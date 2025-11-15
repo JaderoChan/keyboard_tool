@@ -1,3 +1,6 @@
+// Author: 頔珞JaderoChan
+// Repositories URL : https://github.com/JaderoChan/keyboard_tool
+
 /*
     MIT License
 
