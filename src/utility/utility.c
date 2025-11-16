@@ -22,8 +22,8 @@
     #define ALT_TEXT    "Alt"
 #endif // _KBDT_WIN
 
-#define CTRL_TEXT   "Ctrl"
-#define SHIFT_TEXT  "Shift"
+#define CTRL_TEXT       "Ctrl"
+#define SHIFT_TEXT      "Shift"
 
 // Check whether two strings is equal, ignoring case, spaces and underscores.
 static bool is_equal_str(const char* str1, const char* str2)
