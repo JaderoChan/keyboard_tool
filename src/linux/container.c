@@ -79,8 +79,7 @@ void remove_item_in_container(struct container* cont, size_t index)
         memcpy(
             (char*) cont->data + index * cont->step,
             (char*) cont->data + (index + 1) * cont->step,
-            (cont->size - index - 1) * cont->step
-        );
+            (cont->size - index - 1) * cont->step);
     cont->size--;
 }
 
