@@ -52,8 +52,7 @@ void work()
         kCGEventTapOptionDefault,
         event_mask,
         &keyboard_tap_callback,
-        NULL
-    );
+        NULL);
     if (!event_tap)
     {
         set_run_fail(KBDT_RC_FAIL);
