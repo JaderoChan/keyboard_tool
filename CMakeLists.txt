@@ -136,7 +136,7 @@ write_basic_package_version_file(
 )
 
 configure_package_config_file(
-    ${PROJECT_NAME}Config.cmake.in
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/${PROJECT_NAME}Config.cmake.in
     ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
     PATH_VARS INCLUDE_DIRS LIB_DIR
     INSTALL_DESTINATION ${PROJECT_NAME}/lib/cmake
