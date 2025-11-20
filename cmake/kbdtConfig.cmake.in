@@ -6,7 +6,7 @@ if(APPLE)
     find_dependency(Carbon CoreFoundation CoreGraphics REQUIRED)
 endif()
 
-include(@PACKAGE_LIB_DIR@/cmake/@PROJECT_NAME@Targets.cmake)
+include(@PACKAGE_LIB_DIR@/cmake/@PROJECT_NAME@/@PROJECT_NAME@Targets.cmake)
 
 set_and_check(@PROJECT_NAME@_INCLUDE_DIRS @PACKAGE_INCLUDE_DIRS@)
 set_and_check(@PROJECT_NAME@_LIBRARY_DIRS @PACKAGE_LIB_DIR@)
