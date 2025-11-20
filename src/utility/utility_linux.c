@@ -6,7 +6,7 @@ KBDT_API int kbdt_keyboard_key_to_native(enum keyboard_key key)
 {
     switch (key)
     {
-        // Number keys.
+        // Number keys
         case KBDKEY_0:                  return KEY_0;
         case KBDKEY_1:                  return KEY_1;
         case KBDKEY_2:                  return KEY_2;
@@ -18,7 +18,7 @@ KBDT_API int kbdt_keyboard_key_to_native(enum keyboard_key key)
         case KBDKEY_8:                  return KEY_8;
         case KBDKEY_9:                  return KEY_9;
 
-        // ASCII letter keys.
+        // ASCII letter keys
         case KBDKEY_A:                  return KEY_A;
         case KBDKEY_B:                  return KEY_B;
         case KBDKEY_C:                  return KEY_C;
@@ -46,12 +46,12 @@ KBDT_API int kbdt_keyboard_key_to_native(enum keyboard_key key)
         case KBDKEY_Y:                  return KEY_Y;
         case KBDKEY_Z:                  return KEY_Z;
 
-        // Whitespace keys.
+        // Whitespace keys
         case KBDKEY_TAB:                return KEY_TAB;
         case KBDKEY_SPACE:              return KEY_SPACE;
         case KBDKEY_ENTER:              return KEY_ENTER;
 
-        // Navigation keys.
+        // Navigation keys
         case KBDKEY_HOME:               return KEY_HOME;
         case KBDKEY_END:                return KEY_END;
         case KBDKEY_PAGE_UP:            return KEY_PAGEUP;
@@ -61,13 +61,13 @@ KBDT_API int kbdt_keyboard_key_to_native(enum keyboard_key key)
         case KBDKEY_RIGHT:              return KEY_RIGHT;
         case KBDKEY_DOWN:               return KEY_DOWN;
 
-        // Editing keys.
+        // Editing keys
         case KBDKEY_BACKSPACE:          return KEY_BACKSPACE;
         case KBDKEY_INSERT:             return KEY_INSERT;
         case KBDKEY_DELETE:             return KEY_DELETE;
         case KBDKEY_CLEAR:              return KEY_CLEAR;
 
-        // Function keys.
+        // Function keys
         case KBDKEY_F1:                 return KEY_F1;
         case KBDKEY_F2:                 return KEY_F2;
         case KBDKEY_F3:                 return KEY_F3;
@@ -93,7 +93,7 @@ KBDT_API int kbdt_keyboard_key_to_native(enum keyboard_key key)
         case KBDKEY_F23:                return KEY_F23;
         case KBDKEY_F24:                return KEY_F24;
 
-        // Numpad number keys.
+        // Numpad number keys
         case KBDKEY_NUMPAD_0:           return KEY_KP0;
         case KBDKEY_NUMPAD_1:           return KEY_KP1;
         case KBDKEY_NUMPAD_2:           return KEY_KP2;
@@ -105,7 +105,7 @@ KBDT_API int kbdt_keyboard_key_to_native(enum keyboard_key key)
         case KBDKEY_NUMPAD_8:           return KEY_KP8;
         case KBDKEY_NUMPAD_9:           return KEY_KP9;
 
-        // Numpad operator keys.
+        // Numpad operator keys
         case KBDKEY_NUMPAD_ADD:         return KEY_KPPLUS;
         case KBDKEY_NUMPAD_SUBTRACT:    return KEY_KPMINUS;
         case KBDKEY_NUMPAD_MULTIPLY:    return KEY_KPASTERISK;
@@ -115,34 +115,34 @@ KBDT_API int kbdt_keyboard_key_to_native(enum keyboard_key key)
         case KBDKEY_NUMPAD_EQUAL:       return KEY_KPEQUAL;
         case KBDKEY_NUMPAD_ENTER:       return KEY_KPENTER;
 
-        // Application keys.
+        // Application keys
         case KBDKEY_ESCAPE:             return KEY_ESC;
         case KBDKEY_PAUSE:              return KEY_PAUSE;
         case KBDKEY_PLAY:               return KEY_PLAY;
         case KBDKEY_HELP:               return KEY_HELP;
         case KBDKEY_MENU:               return KEY_MENU;
 
-        // Media keys.
+        // Media keys
         case KBDKEY_MEDIA_NEXT:         return KEY_NEXTSONG;
         case KBDKEY_MEDIA_PREVIOUS:     return KEY_PREVIOUSSONG;
         case KBDKEY_MEDIA_PLAY_PAUSE:   return KEY_PLAYPAUSE;
         case KBDKEY_MEDIA_STOP:         return KEY_STOPCD;
 
-        // Volume keys.
+        // Volume keys
         case KBDKEY_VOLUME_UP:          return KEY_VOLUMEUP;
         case KBDKEY_VOLUME_DOWN:        return KEY_VOLUMEDOWN;
         case KBDKEY_VOLUME_MUTE:        return KEY_MUTE;
 
-        // Lock keys.
+        // Lock keys
         case KBDKEY_CAPS_LOCK:          return KEY_CAPSLOCK;
         case KBDKEY_NUM_LOCK:           return KEY_NUMLOCK;
         case KBDKEY_SCROLL_LOCK:        return KEY_SCROLLLOCK;
 
-        // Device keys.
-        case KBDKEY_PRINT_SCREEN:       return KEY_PRINT;    // Need to check.
+        // Device keys
+        case KBDKEY_PRINT_SCREEN:       return KEY_PRINT;    // Need to check
         case KBDKEY_SLEEP:              return KEY_SLEEP;
 
-        // OEM (Original Equipment Manufacturer) keys.
+        // OEM (Original Equipment Manufacturer) keys
         // The specific values of the following keys may vary on different devices.
         // All of the following uses the standard keyboard layout of the United States.
         case KBDKEY_LEFT_QUOTE:         return KEY_GRAVE;
@@ -156,19 +156,19 @@ KBDT_API int kbdt_keyboard_key_to_native(enum keyboard_key key)
         case KBDKEY_PERIOD:             return KEY_DOT;
         case KBDKEY_SLASH:              return KEY_SLASH;
         case KBDKEY_BACKSLASH:          return KEY_BACKSLASH;
-        case KBDKEY_ANGLE_BRACKET:      return KEY_102ND;     // Need to check.
+        case KBDKEY_ANGLE_BRACKET:      return KEY_102ND;     // Need to check
 
-        // Modifier keys.
-        case KBDKEY_MOD_META:           return 0;   // Not supported.
+        // Modifier keys
+        case KBDKEY_MOD_META:           return 0;   // Not supported
         case KBDKEY_MOD_META_LEFT:      return KEY_LEFTMETA;
         case KBDKEY_MOD_META_RIGHT:     return KEY_RIGHTMETA;
-        case KBDKEY_MOD_CTRL:           return 0;   // Not supported.
+        case KBDKEY_MOD_CTRL:           return 0;   // Not supported
         case KBDKEY_MOD_CTRL_LEFT:      return KEY_LEFTCTRL;
         case KBDKEY_MOD_CTRL_RIGHT:     return KEY_RIGHTCTRL;
-        case KBDKEY_MOD_ALT:            return 0;   // Not supported.
+        case KBDKEY_MOD_ALT:            return 0;   // Not supported
         case KBDKEY_MOD_ALT_LEFT:       return KEY_LEFTALT;
         case KBDKEY_MOD_ALT_RIGHT:      return KEY_RIGHTALT;
-        case KBDKEY_MOD_SHIFT:          return 0;   // Not supported.
+        case KBDKEY_MOD_SHIFT:          return 0;   // Not supported
         case KBDKEY_MOD_SHIFT_LEFT:     return KEY_LEFTSHIFT;
         case KBDKEY_MOD_SHIFT_RIGHT:    return KEY_RIGHTSHIFT;
 
@@ -180,7 +180,7 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_native(int native_key)
 {
     switch (native_key)
     {
-        // Number keys.
+        // Number keys
         case KEY_0:                 return KBDKEY_0;
         case KEY_1:                 return KBDKEY_1;
         case KEY_2:                 return KBDKEY_2;
@@ -192,7 +192,7 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_native(int native_key)
         case KEY_8:                 return KBDKEY_8;
         case KEY_9:                 return KBDKEY_9;
 
-        // ASCII letter keys.
+        // ASCII letter keys
         case KEY_A:                 return KBDKEY_A;
         case KEY_B:                 return KBDKEY_B;
         case KEY_C:                 return KBDKEY_C;
@@ -220,12 +220,12 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_native(int native_key)
         case KEY_Y:                 return KBDKEY_Y;
         case KEY_Z:                 return KBDKEY_Z;
 
-        // Whitespace keys.
+        // Whitespace keys
         case KEY_TAB:               return KBDKEY_TAB;
         case KEY_SPACE:             return KBDKEY_SPACE;
         case KEY_ENTER:             return KBDKEY_ENTER;
 
-        // Navigation keys.
+        // Navigation keys
         case KEY_HOME:              return KBDKEY_HOME;
         case KEY_END:               return KBDKEY_END;
         case KEY_PAGEUP:            return KBDKEY_PAGE_UP;
@@ -235,13 +235,13 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_native(int native_key)
         case KEY_RIGHT:             return KBDKEY_RIGHT;
         case KEY_DOWN:              return KBDKEY_DOWN;
 
-        // Editing keys.
+        // Editing keys
         case KEY_BACKSPACE:         return KBDKEY_BACKSPACE;
         case KEY_INSERT:            return KBDKEY_INSERT;
         case KEY_DELETE:            return KBDKEY_DELETE;
         case KEY_CLEAR:             return KBDKEY_CLEAR;
 
-        // Function keys.
+        // Function keys
         case KEY_F1:                return KBDKEY_F1;
         case KEY_F2:                return KBDKEY_F2;
         case KEY_F3:                return KBDKEY_F3;
@@ -267,7 +267,7 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_native(int native_key)
         case KEY_F23:               return KBDKEY_F23;
         case KEY_F24:               return KBDKEY_F24;
 
-        // Numpad number keys.
+        // Numpad number keys
         case KEY_KP0:               return KBDKEY_NUMPAD_0;
         case KEY_KP1:               return KBDKEY_NUMPAD_1;
         case KEY_KP2:               return KBDKEY_NUMPAD_2;
@@ -279,7 +279,7 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_native(int native_key)
         case KEY_KP8:               return KBDKEY_NUMPAD_8;
         case KEY_KP9:               return KBDKEY_NUMPAD_9;
 
-        // Numpad operator keys.
+        // Numpad operator keys
         case KEY_KPPLUS:            return KBDKEY_NUMPAD_ADD;
         case KEY_KPMINUS:           return KBDKEY_NUMPAD_SUBTRACT;
         case KEY_KPASTERISK:        return KBDKEY_NUMPAD_MULTIPLY;
@@ -289,34 +289,34 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_native(int native_key)
         case KEY_KPEQUAL:           return KBDKEY_NUMPAD_EQUAL;
         case KEY_KPENTER:           return KBDKEY_NUMPAD_ENTER;
 
-        // Application keys.
+        // Application keys
         case KEY_ESC:               return KBDKEY_ESCAPE;
         case KEY_PAUSE:             return KBDKEY_PAUSE;
         case KEY_PLAY:              return KBDKEY_PLAY;
         case KEY_HELP:              return KBDKEY_HELP;
         case KEY_MENU:              return KBDKEY_MENU;
 
-        // Media keys.
+        // Media keys
         case KEY_NEXTSONG:          return KBDKEY_MEDIA_NEXT;
         case KEY_PREVIOUSSONG:      return KBDKEY_MEDIA_PREVIOUS;
         case KEY_PLAYPAUSE:         return KBDKEY_MEDIA_PLAY_PAUSE;
         case KEY_STOPCD:            return KBDKEY_MEDIA_STOP;
 
-        // Volume keys.
+        // Volume keys
         case KEY_VOLUMEUP:          return KBDKEY_VOLUME_UP;
         case KEY_VOLUMEDOWN:        return KBDKEY_VOLUME_DOWN;
         case KEY_MUTE:              return KBDKEY_VOLUME_MUTE;
 
-        // Lock keys.
+        // Lock keys
         case KEY_CAPSLOCK:          return KBDKEY_CAPS_LOCK;
         case KEY_NUMLOCK:           return KBDKEY_NUM_LOCK;
         case KEY_SCROLLLOCK:        return KBDKEY_SCROLL_LOCK;
 
-        // Device keys.
-        case KEY_PRINT:             return KBDKEY_PRINT_SCREEN;    // Need to check.
+        // Device keys
+        case KEY_PRINT:             return KBDKEY_PRINT_SCREEN;    // Need to check
         case KEY_SLEEP:             return KBDKEY_SLEEP;
 
-        // OEM (Original Equipment Manufacturer) keys.
+        // OEM (Original Equipment Manufacturer) keys
         // The specific values of the following keys may vary on different devices.
         // All of the following uses the standard keyboard layout of the United States.
         case KEY_GRAVE:             return KBDKEY_LEFT_QUOTE;
@@ -330,9 +330,9 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_native(int native_key)
         case KEY_DOT:               return KBDKEY_PERIOD;
         case KEY_SLASH:             return KBDKEY_SLASH;
         case KEY_BACKSLASH:         return KBDKEY_BACKSLASH;
-        case KEY_102ND:             return KBDKEY_ANGLE_BRACKET;   // Need to check.
+        case KEY_102ND:             return KBDKEY_ANGLE_BRACKET;   // Need to check
 
-        // Modifier keys.
+        // Modifier keys
         case KEY_LEFTMETA:          return KBDKEY_MOD_META_LEFT;
         case KEY_RIGHTMETA:         return KBDKEY_MOD_META_RIGHT;
         case KEY_LEFTCTRL:          return KBDKEY_MOD_CTRL_LEFT;

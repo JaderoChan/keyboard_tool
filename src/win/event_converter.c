@@ -25,11 +25,11 @@ void keyboard_event_from_param(WPARAM wParam, LPARAM lParam, struct keyboard_eve
     KBDLLHOOKSTRUCT* kbdllhs = (KBDLLHOOKSTRUCT*) lParam;
     switch (wParam)
     {
-        case WM_KEYDOWN:    // Fallthrough.
+        case WM_KEYDOWN:    // Fallthrough
         case WM_SYSKEYDOWN:
             event->type = KBDET_PRESSED;
             break;
-        case WM_KEYUP:      // Fallthrough.
+        case WM_KEYUP:      // Fallthrough
         case WM_SYSKEYUP:
             event->type = KBDET_RELEASED;
             break;

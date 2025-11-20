@@ -70,7 +70,7 @@ KBDT_API const char* kbdt_keyboard_key_to_str(enum keyboard_key key)
 {
     switch (key)
     {
-        // Number keys.
+        // Number keys
         case KBDKEY_0:                  return "0";
         case KBDKEY_1:                  return "1";
         case KBDKEY_2:                  return "2";
@@ -82,7 +82,7 @@ KBDT_API const char* kbdt_keyboard_key_to_str(enum keyboard_key key)
         case KBDKEY_8:                  return "8";
         case KBDKEY_9:                  return "9";
 
-        // ASCII letter keys.
+        // ASCII letter keys
         case KBDKEY_A:                  return "A";
         case KBDKEY_B:                  return "B";
         case KBDKEY_C:                  return "C";
@@ -110,12 +110,12 @@ KBDT_API const char* kbdt_keyboard_key_to_str(enum keyboard_key key)
         case KBDKEY_Y:                  return "Y";
         case KBDKEY_Z:                  return "Z";
 
-        // Whitespace keys.
+        // Whitespace keys
         case KBDKEY_TAB:                return "Tab";
         case KBDKEY_SPACE:              return "Space";
         case KBDKEY_ENTER:              return "Enter";
 
-        // Navigation keys.
+        // Navigation keys
         case KBDKEY_HOME:               return "Home";
         case KBDKEY_END:                return "End";
         case KBDKEY_PAGE_UP:            return "Page Up";
@@ -125,13 +125,13 @@ KBDT_API const char* kbdt_keyboard_key_to_str(enum keyboard_key key)
         case KBDKEY_RIGHT:              return "Right";
         case KBDKEY_DOWN:               return "Down";
 
-        // Editing keys.
+        // Editing keys
         case KBDKEY_BACKSPACE:          return "Backspace";
         case KBDKEY_INSERT:             return "Insert";
         case KBDKEY_DELETE:             return "Delete";
         case KBDKEY_CLEAR:              return "Clear";
 
-        // Function keys.
+        // Function keys
         case KBDKEY_F1:                 return "F1";
         case KBDKEY_F2:                 return "F2";
         case KBDKEY_F3:                 return "F3";
@@ -157,7 +157,7 @@ KBDT_API const char* kbdt_keyboard_key_to_str(enum keyboard_key key)
         case KBDKEY_F23:                return "F23";
         case KBDKEY_F24:                return "F24";
 
-        // Numpad number keys.
+        // Numpad number keys
         case KBDKEY_NUMPAD_0:           return "Numpad 0";
         case KBDKEY_NUMPAD_1:           return "Numpad 1";
         case KBDKEY_NUMPAD_2:           return "Numpad 2";
@@ -169,7 +169,7 @@ KBDT_API const char* kbdt_keyboard_key_to_str(enum keyboard_key key)
         case KBDKEY_NUMPAD_8:           return "Numpad 8";
         case KBDKEY_NUMPAD_9:           return "Numpad 9";
 
-        // Numpad operator keys.
+        // Numpad operator keys
         case KBDKEY_NUMPAD_ADD:         return "Numpad Add";
         case KBDKEY_NUMPAD_SUBTRACT:    return "Numpad Subtract";
         case KBDKEY_NUMPAD_MULTIPLY:    return "Numpad Multiply";
@@ -179,34 +179,34 @@ KBDT_API const char* kbdt_keyboard_key_to_str(enum keyboard_key key)
         case KBDKEY_NUMPAD_EQUAL:       return "Numpad Equal";
         case KBDKEY_NUMPAD_ENTER:       return "Numpad Enter";
 
-        // Applications keys.
+        // Applications keys
         case KBDKEY_ESCAPE:             return "Esc";
         case KBDKEY_PAUSE:              return "Pause";
         case KBDKEY_PLAY:               return "Play";
         case KBDKEY_HELP:               return "Help";
         case KBDKEY_MENU:               return "Menu";
 
-        // Media keys.
+        // Media keys
         case KBDKEY_MEDIA_NEXT:         return "Media Next";
         case KBDKEY_MEDIA_PREVIOUS:     return "Media Previous";
         case KBDKEY_MEDIA_PLAY_PAUSE:   return "Media Play/Pause";
         case KBDKEY_MEDIA_STOP:         return "Media Stop";
 
-        // Volume keys.
+        // Volume keys
         case KBDKEY_VOLUME_UP:          return "Volume Up";
         case KBDKEY_VOLUME_DOWN:        return "Volume Down";
         case KBDKEY_VOLUME_MUTE:        return "Volume Mute";
 
-        // Lock keys.
+        // Lock keys
         case KBDKEY_CAPS_LOCK:          return "CapsLock";
         case KBDKEY_NUM_LOCK:           return "NumLock";
         case KBDKEY_SCROLL_LOCK:        return "ScrollLock";
 
-        // Device keys.
+        // Device keys
         case KBDKEY_PRINT_SCREEN:       return "Print Screen";
         case KBDKEY_SLEEP:              return "Sleep";
 
-        // OEM (Original Equipment Manufacturer) keys.
+        // OEM (Original Equipment Manufacturer) keys
         // The specific values of the following keys may vary on different devices.
         // All of the following uses the standard keyboard layout of the United States.
         case KBDKEY_LEFT_QUOTE:         return "`";
@@ -222,7 +222,7 @@ KBDT_API const char* kbdt_keyboard_key_to_str(enum keyboard_key key)
         case KBDKEY_BACKSLASH:          return "\\";
         case KBDKEY_ANGLE_BRACKET:      return "<>";
 
-        // Modifier keys.
+        // Modifier keys
         case KBDKEY_MOD_META:           return META_TEXT;
         case KBDKEY_MOD_META_LEFT:      return ("Left " META_TEXT);
         case KBDKEY_MOD_META_RIGHT:     return ("Right " META_TEXT);
@@ -248,13 +248,13 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_str(const char* str)
     if (strlen(str) == 1 && IS_ALNUM(str[0]))
         return (enum keyboard_key) str[0];
 
-    // Whitespace keys.
+    // Whitespace keys
     if (is_equal_str(str, "tab"))       return KBDKEY_TAB;
     if (is_equal_str(str, "space"))     return KBDKEY_SPACE;
     if (is_equal_str(str, "enter") || is_equal_str(str, "return"))
         return KBDKEY_ENTER;
 
-    // Navigation keys.
+    // Navigation keys
     if (is_equal_str(str, "home"))      return KBDKEY_HOME;
     if (is_equal_str(str, "end"))       return KBDKEY_END;
     if (is_equal_str(str, "page up") || is_equal_str(str, "pgup"))
@@ -270,7 +270,7 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_str(const char* str)
     if (is_equal_str(str, "down") || is_equal_str(str, "arrow down"))
         return KBDKEY_DOWN;
 
-    // Editing keys.
+    // Editing keys
     if (is_equal_str(str, "backspace") || is_equal_str(str, "back"))
         return KBDKEY_BACKSPACE;
     if (is_equal_str(str, "insert") || is_equal_str(str, "ins"))
@@ -279,7 +279,7 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_str(const char* str)
         return KBDKEY_DELETE;
     if (is_equal_str(str, "clear"))     return KBDKEY_CLEAR;
 
-    // Function keys.
+    // Function keys
     if (is_equal_str(str, "f1"))        return KBDKEY_F1;
     if (is_equal_str(str, "f2"))        return KBDKEY_F2;
     if (is_equal_str(str, "f3"))        return KBDKEY_F3;
@@ -305,7 +305,7 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_str(const char* str)
     if (is_equal_str(str, "f23"))       return KBDKEY_F23;
     if (is_equal_str(str, "f24"))       return KBDKEY_F24;
 
-    // Numpad number keys.
+    // Numpad number keys
     if (is_equal_str(str, "numpad 0") || is_equal_str(str, "keypad 0"))
         return KBDKEY_NUMPAD_0;
     if (is_equal_str(str, "numpad 1") || is_equal_str(str, "keypad 1"))
@@ -327,7 +327,7 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_str(const char* str)
     if (is_equal_str(str, "numpad 9") || is_equal_str(str, "keypad 9"))
         return KBDKEY_NUMPAD_9;
 
-    // Numpad operator keys.
+    // Numpad operator keys
     if (is_equal_str(str, "numpad add") || is_equal_str(str, "keypad add"))
         return KBDKEY_NUMPAD_ADD;
     if (is_equal_str(str, "numpad subtract") || is_equal_str(str, "keypad subtract"))
@@ -346,7 +346,7 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_str(const char* str)
         is_equal_str(str, "numpad return") || is_equal_str(str, "keypad return"))
         return KBDKEY_NUMPAD_EQUAL;
 
-    // Applications keys.
+    // Applications keys
     if (is_equal_str(str, "esc") || is_equal_str(str, "escape"))
         return KBDKEY_ESCAPE;
     if (is_equal_str(str, "pause"))     return KBDKEY_PAUSE;
@@ -354,7 +354,7 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_str(const char* str)
     if (is_equal_str(str, "help"))      return KBDKEY_HELP;
     if (is_equal_str(str, "menu"))      return KBDKEY_MENU;
 
-    // Media keys.
+    // Media keys
     if (is_equal_str(str, "media next") || is_equal_str(str, "media track next"))
         return KBDKEY_MEDIA_NEXT;
     if (is_equal_str(str, "media previous") || is_equal_str(str, "media prev") ||
@@ -365,7 +365,7 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_str(const char* str)
     if (is_equal_str(str, "media stop"))
         return KBDKEY_MEDIA_STOP;
 
-    // Volume keys.
+    // Volume keys
     if (is_equal_str(str, "volume up") || is_equal_str(str, "vol up"))
         return KBDKEY_VOLUME_UP;
     if (is_equal_str(str, "volume down") || is_equal_str(str, "vol down"))
@@ -373,7 +373,7 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_str(const char* str)
     if (is_equal_str(str, "volume mute") || is_equal_str(str, "vol mute"))
         return KBDKEY_VOLUME_MUTE;
 
-    // Lock keys.
+    // Lock keys
     if (is_equal_str(str, "caps lock") || is_equal_str(str, "caps lk"))
         return KBDKEY_CAPS_LOCK;
     if (is_equal_str(str, "num lock") || is_equal_str(str, "num lk"))
@@ -381,13 +381,13 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_str(const char* str)
     if (is_equal_str(str, "scroll lock") || is_equal_str(str, "scroll lk"))
         return KBDKEY_SCROLL_LOCK;
 
-    // Device keys.
+    // Device keys
     if (is_equal_str(str, "print screen") || is_equal_str(str, "prtsc") || is_equal_str(str, "print"))
         return KBDKEY_PRINT_SCREEN;
     if (is_equal_str(str, "sleep"))
         return KBDKEY_SLEEP;
 
-    // OEM (Original Equipment Manufacturer) keys.
+    // OEM (Original Equipment Manufacturer) keys
     // The specific values of the following keys may vary on different devices.
     // All of the following uses the standard keyboard layout of the United States.
     if (is_equal_str(str, "`"))     return KBDKEY_LEFT_QUOTE;
@@ -403,7 +403,7 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_str(const char* str)
     if (is_equal_str(str, "\\"))    return KBDKEY_BACKSLASH;
     if (is_equal_str(str, "<>"))    return KBDKEY_ANGLE_BRACKET;
 
-    // Modifier keys.
+    // Modifier keys
     if (IS_META(str, ""))           return KBDKEY_MOD_META;
     if (IS_META(str, "left"))       return KBDKEY_MOD_META_LEFT;
     if (IS_META(str, "right"))      return KBDKEY_MOD_META_RIGHT;

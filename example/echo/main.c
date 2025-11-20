@@ -58,6 +58,6 @@ int main()
 
     kbdt_end();
 
-    printf("Success to exit\n");
+    printf("Success to exit.\n");
     return 0;
 }

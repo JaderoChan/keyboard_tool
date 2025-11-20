@@ -5,7 +5,7 @@
 
 enum keyboard_key
 {
-    // Number keys.
+    // Number keys
     KBDKEY_0    = 0x0030,
     KBDKEY_1    = 0x0031,
     KBDKEY_2    = 0x0032,
@@ -17,7 +17,7 @@ enum keyboard_key
     KBDKEY_8    = 0x0038,
     KBDKEY_9    = 0x0039,
 
-    // ASCII letter keys.
+    // ASCII letter keys
     KBDKEY_A    = 0x0041,
     KBDKEY_B    = 0x0042,
     KBDKEY_C    = 0x0043,
@@ -45,12 +45,12 @@ enum keyboard_key
     KBDKEY_Y    = 0x0059,
     KBDKEY_Z    = 0x005a,
 
-    // Whitespace keys.
+    // Whitespace keys
     KBDKEY_TAB  = 0x8000,
     KBDKEY_SPACE,
     KBDKEY_ENTER,
 
-    // Navigation keys.
+    // Navigation keys
     KBDKEY_HOME,
     KBDKEY_END,
     KBDKEY_PAGE_UP,
@@ -60,13 +60,13 @@ enum keyboard_key
     KBDKEY_RIGHT,
     KBDKEY_DOWN,
 
-    // Editing keys.
+    // Editing keys
     KBDKEY_BACKSPACE,
     KBDKEY_INSERT,
     KBDKEY_DELETE,
     KBDKEY_CLEAR,
 
-    // Function keys.
+    // Function keys
     KBDKEY_F1,
     KBDKEY_F2,
     KBDKEY_F3,
@@ -92,7 +92,7 @@ enum keyboard_key
     KBDKEY_F23,
     KBDKEY_F24,
 
-    // Numpad number keys.
+    // Numpad number keys
     KBDKEY_NUMPAD_0,
     KBDKEY_NUMPAD_1,
     KBDKEY_NUMPAD_2,
@@ -104,60 +104,60 @@ enum keyboard_key
     KBDKEY_NUMPAD_8,
     KBDKEY_NUMPAD_9,
 
-    // Numpad operator keys.
-    KBDKEY_NUMPAD_ADD,         // '+' on numpad.
-    KBDKEY_NUMPAD_SUBTRACT,    // '-' on numpad.
-    KBDKEY_NUMPAD_MULTIPLY,    // '*' or '×' on numpad.
-    KBDKEY_NUMPAD_DIVIDE,      // '/' or '÷' on numpad.
-    KBDKEY_NUMPAD_DECIMAL,     // '.' on numpad.
-    KBDKEY_NUMPAD_SEPARATOR,   // ',' on numpad.
-    KBDKEY_NUMPAD_EQUAL,       // ' =' on numpad.
-    KBDKEY_NUMPAD_ENTER,       // Enter on numpad.
+    // Numpad operator keys
+    KBDKEY_NUMPAD_ADD,         // '+' on numpad
+    KBDKEY_NUMPAD_SUBTRACT,    // '-' on numpad
+    KBDKEY_NUMPAD_MULTIPLY,    // '*' or '×' on numpad
+    KBDKEY_NUMPAD_DIVIDE,      // '/' or '÷' on numpad
+    KBDKEY_NUMPAD_DECIMAL,     // '.' on numpad
+    KBDKEY_NUMPAD_SEPARATOR,   // ',' on numpad
+    KBDKEY_NUMPAD_EQUAL,       // ' =' on numpad
+    KBDKEY_NUMPAD_ENTER,       // Enter on numpad
 
-    // Applications keys.
+    // Applications keys
     KBDKEY_ESCAPE,
-    KBDKEY_PAUSE,  // Not is KBDKEY_MEDIA_PLAY_PAUSE.
-    KBDKEY_PLAY,   // Not is KBDKEY_MEDIA_PLAY_PAUSE.
+    KBDKEY_PAUSE,  // Not is KBDKEY_MEDIA_PLAY_PAUSE
+    KBDKEY_PLAY,   // Not is KBDKEY_MEDIA_PLAY_PAUSE
     KBDKEY_HELP,
     KBDKEY_MENU,
 
-    // Media keys.
+    // Media keys
     KBDKEY_MEDIA_NEXT,
     KBDKEY_MEDIA_PREVIOUS,
     KBDKEY_MEDIA_PLAY_PAUSE,
     KBDKEY_MEDIA_STOP,
 
-    // Volume keys.
+    // Volume keys
     KBDKEY_VOLUME_UP,
     KBDKEY_VOLUME_DOWN,
     KBDKEY_VOLUME_MUTE,
 
-    // Lock keys.
+    // Lock keys
     KBDKEY_CAPS_LOCK,
     KBDKEY_NUM_LOCK,
     KBDKEY_SCROLL_LOCK,
 
-    // Device keys.
+    // Device keys
     KBDKEY_PRINT_SCREEN,
     KBDKEY_SLEEP,
 
-    // OEM (Original Equipment Manufacturer) keys.
+    // OEM (Original Equipment Manufacturer) keys
     // The specific values of the following keys may vary on different devices.
     // All of the following uses the standard keyboard layout of the United States.
-    KBDKEY_LEFT_QUOTE,     // '`~' on US standard keyboard.
-    KBDKEY_MINUS,          // '-_' on US standard keyboard.
-    KBDKEY_EQUAL,          // ' =+' on US standard keyboard.
-    KBDKEY_LEFT_BRACKET,   // '[{' on US standard keyboard.
-    KBDKEY_RIGHT_BRACKET,  // ']}' on US standard keyboard.
-    KBDKEY_SEMICOLON,      // ';:' on US standard keyboard.
-    KBDKEY_APOSTROPHE,     // ''"' on US standard keyboard.
-    KBDKEY_COMMA,          // ',<' on US standard keyboard.
-    KBDKEY_PERIOD,         // '.>' on US standard keyboard.
-    KBDKEY_SLASH,          // '/?' on US standard keyboard.
-    KBDKEY_BACKSLASH,      // '\|' on US standard keyboard.
-    KBDKEY_ANGLE_BRACKET,  // '<>' or '\|' on RT 102-key keyboard.
+    KBDKEY_LEFT_QUOTE,     // '`~' on US standard keyboard
+    KBDKEY_MINUS,          // '-_' on US standard keyboard
+    KBDKEY_EQUAL,          // ' =+' on US standard keyboard
+    KBDKEY_LEFT_BRACKET,   // '[{' on US standard keyboard
+    KBDKEY_RIGHT_BRACKET,  // ']}' on US standard keyboard
+    KBDKEY_SEMICOLON,      // ';:' on US standard keyboard
+    KBDKEY_APOSTROPHE,     // ''"' on US standard keyboard
+    KBDKEY_COMMA,          // ',<' on US standard keyboard
+    KBDKEY_PERIOD,         // '.>' on US standard keyboard
+    KBDKEY_SLASH,          // '/?' on US standard keyboard
+    KBDKEY_BACKSLASH,      // '\|' on US standard keyboard
+    KBDKEY_ANGLE_BRACKET,  // '<>' or '\|' on RT 102-key keyboard
 
-    // Modifier keys.
+    // Modifier keys
     KBDKEY_MOD_META,
     KBDKEY_MOD_META_LEFT,
     KBDKEY_MOD_META_RIGHT,
@@ -171,7 +171,7 @@ enum keyboard_key
     KBDKEY_MOD_SHIFT_LEFT,
     KBDKEY_MOD_SHIFT_RIGHT,
 
-    // Alias.
+    // Alias
     KBDKEY_RETURN               = KBDKEY_ENTER,
     KBDKEY_ESC                  = KBDKEY_ESCAPE,
     KBDKEY_NUMPAD_PLUS          = KBDKEY_NUMPAD_ADD,
