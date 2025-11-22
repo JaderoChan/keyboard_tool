@@ -39,7 +39,7 @@ static void* thread_work(void* arg)
     return NULL;
 }
 
-KBDT_API int kbdt_run()
+KBDT_API int kbdt_start()
 {
     if (kbdt_is_running())
         return KBDT_RC_SUCCESS;
@@ -65,7 +65,7 @@ KBDT_API int kbdt_run()
     return rc;
 }
 
-KBDT_API int kbdt_end()
+KBDT_API int kbdt_stop()
 {
     if (!kbdt_is_running())
         return KBDT_RC_SUCCESS;

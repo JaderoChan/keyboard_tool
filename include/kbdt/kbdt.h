@@ -63,12 +63,12 @@ struct keyboard_event
 
 typedef void (*keyboard_event_handler)(struct keyboard_event*);
 
-KBDT_API int kbdt_run();
+KBDT_API int kbdt_start();
 
 /**
  * @attention Do not perform this function in the thread of the event handler.
  */
-KBDT_API int kbdt_end();
+KBDT_API int kbdt_stop();
 
 KBDT_API int kbdt_set_event_handler(keyboard_event_handler handler);
 

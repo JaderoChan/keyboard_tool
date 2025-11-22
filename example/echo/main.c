@@ -35,7 +35,7 @@ static void event_handler(struct keyboard_event* event)
 
 int main()
 {
-    int rc = kbdt_run();
+    int rc = kbdt_start();
     if (rc != KBDT_RC_SUCCESS)
     {
         printf("Failed to run kbdtool. Error code: %d\n", rc);
@@ -56,7 +56,7 @@ int main()
         pthread_cond_wait(&g_cv_should_close, &g_mtx);
     pthread_mutex_unlock(&g_mtx);
 
-    kbdt_end();
+    kbdt_stop();
 
     printf("Success to exit.\n");
     return 0;
