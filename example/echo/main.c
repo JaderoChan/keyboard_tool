@@ -49,7 +49,7 @@ int main()
         exit(1);
     }
 
-    printf("Press ESC to exit.\n\n");
+    printf("Press ESC to exit\n\n");
 
     pthread_mutex_lock(&g_mtx);
     while (!g_should_close)
@@ -58,6 +58,6 @@ int main()
 
     kbdt_stop();
 
-    printf("Success to exit.\n");
+    printf("Success to exit\n");
     return 0;
 }
