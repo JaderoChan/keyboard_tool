@@ -16,7 +16,7 @@ static void event_handler(struct keyboard_event* event)
     switch (event->type)
     {
         case KBDET_PRESSED:
-            printf("Key pressed: %s!\n", kbdt_keyboard_key_to_str(key));
+            printf("Key pressed: %s\n", kbdt_keyboard_key_to_str(key));
             if (key == KBDKEY_ESC)
             {
                 pthread_mutex_lock(&g_mtx);
@@ -26,7 +26,7 @@ static void event_handler(struct keyboard_event* event)
             }
             break;
         case KBDET_RELEASED:
-            printf("Key released: %s!\n", kbdt_keyboard_key_to_str(key));
+            printf("Key released: %s\n", kbdt_keyboard_key_to_str(key));
             break;
         default:
             break;
@@ -38,14 +38,14 @@ int main()
     int rc = kbdt_start();
     if (rc != KBDT_RC_SUCCESS)
     {
-        printf("Failed to run the kbdtool. Error code: %d.\n", rc);
+        printf("Failed to run the kbdtool. Error code: %d\n", rc);
         exit(1);
     }
 
     rc = kbdt_set_event_handler(&event_handler);
     if (rc != KBDT_RC_SUCCESS)
     {
-        printf("Failed to set the event handler. Error code: %d.\n", rc);
+        printf("Failed to set the event handler. Error code: %d\n", rc);
         exit(1);
     }
 

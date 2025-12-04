@@ -68,18 +68,18 @@ int main()
     int rc = kbdt_start();
     if (rc != KBDT_RC_SUCCESS)
     {
-        printf("Failed to run the kbdtool. Error code: %d\n.", rc);
+        printf("Failed to run the kbdtool. Error code: %d\n", rc);
         exit(1);
     }
 
     rc = kbdt_set_event_handler(&event_handler);
     if (rc != KBDT_RC_SUCCESS)
     {
-        printf("Failed to set the event handler. Error code: %d.\n", rc);
+        printf("Failed to set the event handler. Error code: %d\n", rc);
         exit(1);
     }
 
-    printf("Press the 'p' and 'i' key to input the 3.1415926.\n");
+    printf("Press the 'p' and 'i' key to input the 3.1415926\n");
     printf("Press ESC to exit!\n\n");
 
     pthread_mutex_lock(&g_mtx);
