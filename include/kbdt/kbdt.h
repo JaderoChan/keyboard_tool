@@ -32,7 +32,7 @@
 #ifdef __cplusplus
 extern "C"
 {
-#endif // _cplusplus
+#endif // __cplusplus
 
 #ifdef _MSC_VER
     #ifdef KBDT_BUILD_SHARED
