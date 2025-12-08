@@ -42,6 +42,7 @@ endif()
 
 file(GLOB SRC ${SRC} src/*.c)
 if(KBDT_BUILD_WITH_UTILITY)
+    set(KBDT_WITH_UTILITY TRUE)
     file(GLOB SRC ${SRC} src/utility/utility.c)
     if(WIN32)
         file(GLOB SRC ${SRC} src/utility/utility_win.c)
@@ -58,11 +59,6 @@ if(KBDT_BUILD_SHARED)
     target_compile_definitions(${PROJECT_NAME} PRIVATE KBDT_BUILD_SHARED)
 else()
     add_library(${PROJECT_NAME} STATIC ${SRC})
-endif()
-
-if(KBDT_BUILD_WITH_UTILITY)
-    set(KBDT_WITH_UTILITY TRUE)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE KBDT_WITH_UTILITY)
 endif()
 
 configure_file(
