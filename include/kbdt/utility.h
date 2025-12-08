@@ -1,6 +1,10 @@
 #ifndef KBDT_UTILITY_H
 #define KBDT_UTILITY_H
 
+#include "config.h"
+
+#ifdef KBDT_WITH_UTILITY
+
 #include "kbdt.h"
 
 enum keyboard_key
@@ -201,6 +205,8 @@ KBDT_API enum keyboard_key kbdt_keyboard_key_from_native(int native_key);
 #ifdef __cplusplus
 }
 #endif
+
+#endif // KBDT_WITH_UTILITY
 
 #endif // !KBDT_UTILITY_H
 

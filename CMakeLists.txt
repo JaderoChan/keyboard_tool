@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.25)
 
 project(kbdt VERSION 1.1.0 LANGUAGES C)
+set(KBDT_VERSION ${PROJECT_VERSION})
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
@@ -52,11 +53,22 @@ if(KBDT_BUILD_WITH_UTILITY)
 endif()
 
 if(KBDT_BUILD_SHARED)
+    set(KBDT_SHARED TRUE)
     add_library(${PROJECT_NAME} SHARED ${SRC})
-    target_compile_definitions(${PROJECT_NAME} PUBLIC KBDT_BUILD_SHARED)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE KBDT_BUILD_SHARED)
 else()
     add_library(${PROJECT_NAME} STATIC ${SRC})
 endif()
+
+if(KBDT_BUILD_WITH_UTILITY)
+    set(KBDT_WITH_UTILITY TRUE)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE KBDT_WITH_UTILITY)
+endif()
+
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/templates/config.h.in
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/kbdt/config.h
+)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -66,6 +78,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 if(WIN32)
     message(STATUS "${KBDT_MSG_PREFIX} Windows platform detected.")
     set(CMAKE_STATIC_LIBRARY_SUFFIX ".lib")
+    set(CMAKE_IMPORT_LIBRARY_SUFFIX ".lib")
 endif()
 
 if(APPLE)
@@ -103,7 +116,7 @@ endif()
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX d)
 
 find_package(Threads REQUIRED)
-target_link_libraries(${PROJECT_NAME} PUBLIC Threads::Threads)
+target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
