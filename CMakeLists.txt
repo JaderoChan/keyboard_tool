@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 
-project(kbdt VERSION 1.1.0 LANGUAGES C)
+project(kbdt VERSION 1.1.1 LANGUAGES C)
 set(KBDT_VERSION ${PROJECT_VERSION})
 
 if(NOT CMAKE_BUILD_TYPE)
