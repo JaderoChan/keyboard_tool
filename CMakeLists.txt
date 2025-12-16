@@ -54,7 +54,6 @@ if(KBDT_BUILD_WITH_UTILITY)
 endif()
 
 if(KBDT_BUILD_SHARED)
-    set(KBDT_SHARED TRUE)
     add_library(${PROJECT_NAME} SHARED ${SRC})
     target_compile_definitions(${PROJECT_NAME} PRIVATE KBDT_BUILD_SHARED)
 else()
