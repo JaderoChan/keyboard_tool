@@ -63,12 +63,13 @@ endif()
 
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/templates/config.h.in
-    ${CMAKE_CURRENT_SOURCE_DIR}/include/kbdt/config.h
+    ${CMAKE_BINARY_DIR}/include/config.h
 )
 
+include(GNUInstallDirs)
 target_include_directories(${PROJECT_NAME} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:include>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
 if(WIN32)
@@ -116,7 +117,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
-include(GNUInstallDirs)
 install(
     TARGETS ${PROJECT_NAME}
     EXPORT ${PROJECT_NAME}
@@ -126,6 +126,8 @@ install(
 )
 
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+file(GLOB HEADERS ${CMAKE_BINARY_DIR}/include/*.h ${CMAKE_BINARY_DIR}/include/*.hpp)
+install(FILES ${HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kbdt)
 install(FILES LICENSE DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/licenses/${PROJECT_NAME})
 
 install(
