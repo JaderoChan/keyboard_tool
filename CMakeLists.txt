@@ -62,13 +62,13 @@ endif()
 
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/templates/config.h.in
-    ${CMAKE_BINARY_DIR}/include/config.h
+    ${CMAKE_CURRENT_BINARY_DIR}/include/config.h
 )
 
 include(GNUInstallDirs)
 target_include_directories(${PROJECT_NAME} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/include>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
@@ -126,7 +126,7 @@ install(
 )
 
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-file(GLOB HEADERS ${CMAKE_BINARY_DIR}/include/*.h ${CMAKE_BINARY_DIR}/include/*.hpp)
+file(GLOB HEADERS ${CMAKE_CURRENT_BINARY_DIR}/include/*.h ${CMAKE_CURRENT_BINARY_DIR}/include/*.hpp)
 install(FILES ${HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/kbdt)
 install(FILES LICENSE DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/licenses/${PROJECT_NAME})
 
@@ -142,22 +142,22 @@ set(LIB_DIR ${CMAKE_INSTALL_LIBDIR})
 
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
-    ${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
     VERSION ${PROJECT_VERSION}
     COMPATIBILITY SameMajorVersion
 )
 
 configure_package_config_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/${PROJECT_NAME}Config.cmake.in
-    ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
     PATH_VARS INCLUDE_DIRS LIB_DIR
     INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
 )
 
 install(
     FILES
-    ${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
-    ${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
 )
 
