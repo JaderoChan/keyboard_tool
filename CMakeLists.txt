@@ -59,6 +59,7 @@ if(KBDT_BUILD_SHARED)
 else()
     add_library(${PROJECT_NAME} STATIC ${SRC})
 endif()
+add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake/templates/config.h.in
@@ -114,8 +115,6 @@ set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX d)
 
 find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)
-
-add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 install(
     TARGETS ${PROJECT_NAME}
