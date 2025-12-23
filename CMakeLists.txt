@@ -156,8 +156,6 @@ install(
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
 )
 
-export(PACKAGE ${PROJECT_NAME})
-
 if(KBDT_BUILD_EXAMPLE)
     add_subdirectory(example)
 endif()
