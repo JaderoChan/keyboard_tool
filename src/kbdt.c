@@ -28,14 +28,18 @@ static size_t g_event_buffer_size = 0;
 
 static void* thread_work(void* arg)
 {
+    (void)arg; // Unused parameter
+
     work();
+
     LOCK(&g_mtx);
-    // If the work is exit normally (the running state is `RS_RUNNING`) set the running state to `RS_FREE`,
-    // else if the work is exit in error (the running state is `RS_TERMINATE`) keep the running state.
+    // If the work exits normally (running state is `RS_RUNNING`), set the state to `RS_FREE`.
+    // If the work exits due to an error (running state is `RS_TERMINATE`), preserve the error state.
     if (g_running_state == RS_RUNNING)
         g_running_state = RS_FREE;
     pthread_cond_signal(&g_cv_running_state);
     UNLOCK(&g_mtx);
+
     return NULL;
 }
 
@@ -52,12 +56,13 @@ KBDT_API int kbdt_start()
     pthread_detach(g_worker_thread);
 
     LOCK(&g_mtx);
-    // Wait the work set the running state.
+    // Wait for the worker thread to set the running state
     while (g_running_state == RS_FREE)
         pthread_cond_wait(&g_cv_running_state, &g_mtx);
 
-    // If the work occur error set the running state to `RS_FREE` and clear related resource.
+    // Handle initialization errors
     if (g_running_state == RS_TERMINATE)
+        // Reset state and clean up resources on error
         g_running_state = RS_FREE;
     rc = g_running_rc;
     UNLOCK(&g_mtx);
@@ -75,7 +80,7 @@ KBDT_API int kbdt_stop()
         return rc;
 
     LOCK(&g_mtx);
-    // Wait the work is exit.
+    // Wait for the worker thread to exit and transition to free state
     while (g_running_state != RS_FREE)
         pthread_cond_wait(&g_cv_running_state, &g_mtx);
     UNLOCK(&g_mtx);

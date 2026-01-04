@@ -7,27 +7,43 @@ void set_run_success();
 
 void set_run_fail(int error_code);
 
-// The implementationa of the follow fucntion depend on platform.
+// The following functions have platform-specific implementations.
 
 /**
- * @note This function will be performed before the worker thread is running.
+ * @brief Platform-specific initialization before the worker thread starts.
+ * @note This function is called before the worker thread begins execution.
+ * @return 0 on success, non-zero error code on failure.
  */
 int do_before_start_work();
 
 /**
- * @note This function will be performed before the worker thread is end.
- * Specifically, only when this function returns will the thread to exit.
+ * @brief Platform-specific cleanup before the worker thread terminates.
+ * @note This function is called before the worker thread exits.
+ * @note The worker thread will only exit after this function returns.
+ * @return 0 on success, non-zero error code on failure.
  */
 int do_before_end_work();
 
 /**
- * @attention The `set_run_success` or `set_run_fail` must be performed in
- * this function to indicate whether the work running successfully.
+ * @brief Platform-specific main work function.
+ * @attention This function must call either `set_run_success()` or `set_run_fail()`
+ * to indicate whether the work completed successfully.
  */
 void work();
 
+/**
+ * @brief Platform-specific implementation to set the keyboard event handler.
+ * @param handler Function pointer to handle keyboard events.
+ * @return 0 on success, non-zero error code on failure.
+ */
 int set_event_handler_p(keyboard_event_handler handler);
 
+/**
+ * @brief Platform-specific implementation to send keyboard events.
+ * @param events Array of keyboard events to send.
+ * @param event_count Number of events in the array.
+ * @return Number of events successfully sent.
+ */
 size_t send_events_p(struct keyboard_event* events, size_t event_count);
 
 #endif // !KBDT_PRIVATE_H
