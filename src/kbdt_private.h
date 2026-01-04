@@ -26,7 +26,7 @@ int do_before_end_work();
 
 /**
  * @brief Platform-specific main work function.
- * @attention This function must call either 'set_run_success()' or 'set_run_fail()'
+ * @attention This function must call either `set_run_success()` or `set_run_fail()`
  * to indicate whether the work completed successfully.
  */
 void work();
