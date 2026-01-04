@@ -89,6 +89,6 @@ int main()
 
     kbdt_stop();
 
-    printf("Success to exit!\n");
+    printf("Successfully exit!\n");
     return 0;
 }
