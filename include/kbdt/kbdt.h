@@ -50,8 +50,6 @@ extern "C"
 
 /// @brief Return code for successful operation.
 #define KBDT_RC_SUCCESS     0
-/// @brief Return code for failed operation.
-#define KBDT_RC_FAIL       -1
 
 /**
  * @brief Keyboard event types.

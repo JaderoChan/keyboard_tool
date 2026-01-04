@@ -11,6 +11,9 @@
 
 #include "event_converter.h"
 
+// Return code for failed operation.
+#define KBDT_RC_FAIL       -1
+
 static pthread_mutex_t g_mtx = PTHREAD_MUTEX_INITIALIZER;
 #define LOCK(mtx)   pthread_mutex_lock(mtx)
 #define UNLOCK(mtx) pthread_mutex_unlock(mtx)
