@@ -33,8 +33,8 @@ static void* thread_work(void* arg)
     work();
 
     LOCK(&g_mtx);
-    // If the work exits normally (running state is `RS_RUNNING`), set the state to `RS_FREE`.
-    // If the work exits due to an error (running state is `RS_TERMINATE`), preserve the error state.
+    // If the work exits normally (running state is 'RS_RUNNING), set the state to 'RS_FREE.
+    // If the work exits due to an error (running state is 'RS_TERMINATE'), preserve the error state.
     if (g_running_state == RS_RUNNING)
         g_running_state = RS_FREE;
     pthread_cond_signal(&g_cv_running_state);
