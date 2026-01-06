@@ -21,6 +21,7 @@ if(NOT DEFINED KBDT_MASTER_PROJECT)
 endif()
 
 option(KBDT_BUILD_SHARED "Build shared library" OFF)
+set(KBDT_SHARED ${KBDT_BUILD_SHARED})
 if(KBDT_BUILD_SHARED)
     message(STATUS "${KBDT_MSG_PREFIX} Shared library will be built.")
 else()
