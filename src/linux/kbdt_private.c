@@ -1,4 +1,4 @@
-#include "../kbdt_private.h"
+#include <kbdt_private.h>
 
 #include <stdbool.h>        // bool
 #include <stdint.h>         // int64_t

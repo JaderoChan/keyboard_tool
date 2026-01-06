@@ -1,4 +1,4 @@
-#include "../kbdt_private.h"
+#include <kbdt_private.h>
 
 #include <stdlib.h>     // malloc, free
 
