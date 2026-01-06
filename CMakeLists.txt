@@ -29,6 +29,7 @@ else()
 endif()
 
 option(KBDT_BUILD_WITH_UTILS "Build with utilitys" ON)
+set(KBDT_WITH_UTILS ${KBDT_BUILD_WITH_UTILS})
 option(KBDT_BUILD_EXAMPLE "Build example" ${KBDT_MASTER_PROJECT})
 
 set(SRC)
@@ -42,7 +43,6 @@ endif()
 
 file(GLOB SRC ${SRC} src/*.c)
 if(KBDT_BUILD_WITH_UTILS)
-    set(KBDT_WITH_UTILS TRUE)
     file(GLOB SRC ${SRC} src/utils/utils.c)
     if(WIN32)
         file(GLOB SRC ${SRC} src/utils/utils_win.c)
