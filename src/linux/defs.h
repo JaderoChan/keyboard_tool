@@ -1,5 +1,5 @@
-#ifndef KBDT_LINUX_DEF_H
-#define KBDT_LINUX_DEF_H
+#ifndef KBDT_LINUX_DEFS_H
+#define KBDT_LINUX_DEFS_H
 
 #ifndef BUFFER_SIZE
     #define BUFFER_SIZE 256
@@ -11,4 +11,4 @@
 
 char* global_buffer();
 
-#endif // !KBDT_LINUX_DEF_H
+#endif // !KBDT_LINUX_DEFS_H

@@ -9,7 +9,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include "def.h"
+#include "defs.h"
 #include "uinput_id.h"
 
 bool is_character_device(const char* filename)
