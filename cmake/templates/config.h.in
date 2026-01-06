@@ -1,7 +1,7 @@
 #ifndef KBDT_CONFIG_H
 #define KBDT_CONFIG_H
 
-#cmakedefine KBDT_VERSION "@KBDT_VERSION@"
+#define KBDT_VERSION "@PROJECT_VERSION@"
 #cmakedefine KBDT_SHARED
 #cmakedefine KBDT_WITH_UTILS
 
