@@ -1,5 +1,5 @@
-#ifndef KBDT_LINUX_UTILITY_H
-#define KBDT_LINUX_UTILITY_H
+#ifndef KBDT_LINUX_UTILS_H
+#define KBDT_LINUX_UTILS_H
 
 #include <stdbool.h>
 
@@ -19,4 +19,4 @@ void unsetup_keyboard_uinput(int fd);
 
 char* copy_str_to_new(const char* str);
 
-#endif // !KBDT_LINUX_UTILITY_H
+#endif // !KBDT_LINUX_UTILS_H
