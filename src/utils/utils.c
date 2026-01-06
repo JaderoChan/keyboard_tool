@@ -1,4 +1,4 @@
-#include <kbdt/utility.h>
+#include <kbdt/utils.h>
 
 #include <ctype.h>  // isspace, isalnum, toupper
 #include <stddef.h>

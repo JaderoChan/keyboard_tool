@@ -3,6 +3,6 @@
 
 #cmakedefine KBDT_VERSION "@KBDT_VERSION@"
 #cmakedefine KBDT_SHARED
-#cmakedefine KBDT_WITH_UTILITY
+#cmakedefine KBDT_WITH_UTILS
 
 #endif // !KBDT_CONFIG_H

@@ -4,7 +4,7 @@
 #include <pthread.h>
 
 #include <kbdt/kbdt.h>
-#include <kbdt/utility.h>
+#include <kbdt/utils.h>
 
 static bool g_should_close = false;
 static pthread_mutex_t g_mtx = PTHREAD_MUTEX_INITIALIZER;

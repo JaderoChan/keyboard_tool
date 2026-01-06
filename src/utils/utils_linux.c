@@ -1,4 +1,4 @@
-#include <kbdt/utility.h>
+#include <kbdt/utils.h>
 
 #include <linux/input-event-codes.h>
 
