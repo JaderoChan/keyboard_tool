@@ -36,7 +36,7 @@ extern "C"
 {
 #endif // __cplusplus
 
-#ifdef _MSC_VER
+#ifdef _WIN32
     #ifdef KBDT_BUILD_SHARED
         #define KBDT_API __declspec(dllexport)
     #elif defined(KBDT_SHARED)
