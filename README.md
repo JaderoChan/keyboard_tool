@@ -36,8 +36,7 @@ A cross-platform keyboard event listening and sending library written in C. Orig
 
 - Generally, administrator privileges are required for proper execution.
 - Do not call the `end` function within the thread where the `event_handler` is running.
-- for the MSVC compiler, 'pthread for Windows' needs to be configured. The most recommended way is to install it via **vcpkg**:
 
-    ```shell
-    vcpkg install pthread
-    ```
+## Dependences
+
+[jwinarske/pthreads4w](https://github.com/jwinarske/pthreads4w) Used to provide **pthread** via cmake in the **MSVC** environment (partially modified)

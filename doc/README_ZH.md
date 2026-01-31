@@ -36,8 +36,7 @@ C语言多平台的键盘事件监听和发送库，起初来自[Global Hotkey](
 
 - 通常来讲，需要管理员权限才可以正常运行。
 - 不要在`event_handler`所属线程中执行`end`函数。
-- 对于MSVC编译器需要配置`pthread for Windows`，最推荐的方式是通过**vcpkg**进行安装：
 
-    ```shell
-    vcpkg install pthread
-    ```
+## 依赖
+
+[jwinarske/pthreads4w](https://github.com/jwinarske/pthreads4w) 用于在**MSVC**环境下通过cmake提供**pthread'**（进行了部分修改）

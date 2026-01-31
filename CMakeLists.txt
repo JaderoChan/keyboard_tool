@@ -114,8 +114,18 @@ endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX d)
 
-find_package(Threads REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)
+if(MSVC)
+    include(FetchContent)
+    FetchContent_Declare(
+        pthread
+        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/pthreads4w-cmake
+    )
+    FetchContent_MakeAvailable(pthread)
+    target_link_libraries(${PROJECT_NAME} PRIVATE pthread::pthread)
+else()
+    find_package(Threads REQUIRED)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)
+endif()
 
 install(
     TARGETS ${PROJECT_NAME}
