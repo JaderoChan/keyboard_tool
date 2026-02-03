@@ -2,7 +2,9 @@
 
 [ English | [简体中文](doc/README_ZH.md) ]
 
-A cross-platform keyboard event listening and sending library written in C. Originally derived from the `KeyboardHook` module in the [Global Hotkey](https://github.com/JaderoChan/global_hotkey) library.
+**!!! The library has been using CPP rewritten, migrated to project the [Keyboard tools](https://github.com/JaderoChan/keyboard_tools), this repository no longer maintenance, and exists some bugs !!!**
+
+A cross-platform keyboard event listening and sending library written in C. Originally derived from the `KeyboardHook` module in the [Global Hotkey](https://github.com/JaderoChan/global_hotkey) library.  
 
 ## Features
 
