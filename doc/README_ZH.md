@@ -4,7 +4,7 @@
 
 **警告**
 ---
-**此库已使用cpp重写，迁移至项目[Keyboard tools](https://github.com/JaderoChan/keyboard_tools)，本仓库将不再维护，并且存在些许问题**
+**此库已使用cpp重写，迁移至项目[Keyboard tools](https://github.com/JaderoChan/keyboard_tools)，本仓库将不再维护，并且存在些许问题！！！**
 ---
 
 C语言多平台的键盘事件监听和发送库，起初来自[Global Hotkey](https://github.com/JaderoChan/global_hotkey)库中的`KeyboardHook`模块。
