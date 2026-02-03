@@ -2,7 +2,7 @@
 
 [ English | [简体中文](doc/README_ZH.md) ]
 
-Warnning
+**Warnning**
 ---
 **The library has been using CPP rewritten, migrated to project the [Keyboard tools](https://github.com/JaderoChan/keyboard_tools), this repository no longer maintenance, and exists some bugs**
 ---
